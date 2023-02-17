@@ -64,6 +64,11 @@ html {
     border-color: #2b2b2b;
     color: #fff;
     height: 100%;
-    grid-row: 2 / 6;
+    grid-row: 3 / 6;
+    grid-column: 4 / 5;
+  }
+
+  .backspace {
+    grid-row: 2/ 3;
     grid-column: 4 / 5;
   }

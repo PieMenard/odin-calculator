@@ -10,7 +10,7 @@ const calculator = {
 
 function updateDisplay(){
     const display = document.querySelector('.display');
-    display.value = calculator.displayText;
+    display.value = Math.round(calculator.displayText*100000)/100000;
 }
 
 function inputDigit(x) {
@@ -49,6 +49,22 @@ function equals() {
     console.log(calculator);
 }
 
+function addPeriod() {
+    if (!calculator.displayText.includes('.'))
+    {
+        calculator.displayValue +='.'
+        calculator.displayText = calculator.displayValue;
+    }
+}
+
+function backspace() {
+    if (calculator.displayText.length==1)
+        calculator.displayValue ='0'
+    else
+        calculator.displayValue = calculator.displayValue.slice(0, -1);
+    calculator.displayText = calculator.displayValue;
+}
+
 //RESOLVE OPERATION
 function operate(x , y , operation) {
     switch (operation) {
@@ -64,8 +80,8 @@ function operate(x , y , operation) {
         case "/":
             return divide (x , y);
             break; 
-        default:
-            alert("Illegal operation");
+        /*default:
+            alert("Illegal operation");*/
     }
 }
 
@@ -84,12 +100,16 @@ function clear() {
     calculator.temp = null;
     calculator.operator = null;
     calculator.operatorNext = null;
+    console.log("clear called");
 }
 
+//ASSIGN BUTTONS TO VARIABLES
 const numberButtons = document.querySelectorAll(".numbers");
 const operatorButtons = document.querySelectorAll(".operator");
 const clearButton = document.querySelector(".clear");
 const equalButton = document.querySelector(".equal-sign");
+const dotButton = document.querySelector(".dot");
+const backButton = document.querySelector(".backspace");
 
 //INPUT NUMBERS
 numberButtons.forEach(button => {
@@ -111,7 +131,6 @@ operatorButtons.forEach(button => {
 
 //CLEAR BUTTON 
 clearButton.addEventListener('click', (e) => {
-    console.log(e.id);
     clear();
     updateDisplay();
 });
@@ -119,6 +138,18 @@ clearButton.addEventListener('click', (e) => {
 //EQUAL SIGN BUTTON 
 equalButton.addEventListener('click', (e) => {
     equals();
+    updateDisplay();
+});
+
+//PERIOD BUTTON
+dotButton.addEventListener('click', (e) => {
+    addPeriod();
+    updateDisplay();
+});
+
+//BACKSPACE BUTTON
+backButton.addEventListener('click', (e) => {
+    backspace();
     updateDisplay();
 });
 
@@ -140,6 +171,6 @@ function divide (x , y) {
     if (y !=0 )
         return x / y;
     else    
-        alert("UNPOSSIBLE");
+        return "lol";
 }
 
