@@ -37,6 +37,7 @@ function inputOperator(input_op){
     else    
         calculator.firstOperand = parseFloat(calculator.displayValue);
     calculator.displayValue = '';
+    
     console.log(calculator);
     
 }
@@ -47,6 +48,7 @@ function equals() {
     calculator.temp = operate(calculator.firstOperand,calculator.secondOperand,calculator.operator);
     calculator.displayText = calculator.temp;
     console.log(calculator);
+    
 }
 
 function addPeriod() {
@@ -139,6 +141,7 @@ clearButton.addEventListener('click', (e) => {
 equalButton.addEventListener('click', (e) => {
     equals();
     updateDisplay();
+    clear();
 });
 
 //PERIOD BUTTON
